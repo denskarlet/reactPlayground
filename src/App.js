@@ -22,6 +22,5 @@ function App() {
     </div>
   );
 }
-var s = 4;
 
 export default App;
