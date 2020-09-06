@@ -1,21 +1,19 @@
 import { DECREMENT, INCREMENT, RESET } from './constants';
 
-const increment = () => {
+export const increment = () => {
   return {
     type: INCREMENT,
   };
 };
 
-const decrement = () => {
+export const decrement = () => {
   return {
     type: DECREMENT,
   };
 };
 
-const reset = () => {
+export const reset = () => {
   return {
     type: RESET,
   };
 };
-
-export default { increment, decrement, reset };
