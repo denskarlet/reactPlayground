@@ -1,14 +1,28 @@
-import React, { useContext } from 'react';
-import CountContext from './CountContext';
+import React, { useReducer, useCallback } from 'react';
+import { initialState, countReducer } from './countReducer';
+import * as actions from './actions';
 
 const Counter = () => {
-  const { count, setCount } = useContext(CountContext);
+  const [state, dispatch] = useReducer(countReducer, initialState);
+
+  const increment = useCallback(() => {
+    dispatch(actions.increment());
+  }, [dispatch]);
+
+  const decrement = useCallback(() => {
+    dispatch(actions.decrement());
+  }, [dispatch]);
+
+  const reset = useCallback(() => {
+    dispatch(actions.reset());
+  }, [dispatch]);
+
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={() => setCount(count + 1)}>Increment</button>
-      <button onClick={() => setCount(count - 1)}>Decrement</button>
-      <button onClick={() => setCount(0)}>Reset</button>
+      <h1>{state.count}</h1>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+      <button onClick={reset}>Reset</button>
     </div>
   );
 };
