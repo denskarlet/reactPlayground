@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import toDoListState from './recoilState';
+import { toDoListState } from './recoilState';
 
 const ToDoItem = ({ item }) => {
   const [toDoList, setToDoList] = useRecoilState(toDoListState);
@@ -15,7 +15,7 @@ const ToDoItem = ({ item }) => {
   return (
     <li key={item.id}>
       <span>{item.description}</span>
-      <input onChange={toggleComplete} checked={item.completed} type="checkBox" />
+      <input onChange={toggleComplete} checked={item.done} type="checkBox" />
     </li>
   );
 };

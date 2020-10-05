@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
-import toDoListState from './recoilState';
+import { toDoListState } from './recoilState';
 
 const ToDoCreator = () => {
   const [input, setInput] = useState('');
@@ -13,6 +13,7 @@ const ToDoCreator = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!input) return;
     setToDoList((oldList) => {
       return [...oldList, { description: input, done: false, id: `task-${oldList.length}` }];
     });

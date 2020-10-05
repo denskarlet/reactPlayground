@@ -4,5 +4,9 @@ const toDoListState = atom({
   key: 'toDoList',
   default: [],
 });
+const toDoListFilterState = atom({
+  key: 'toDoListFilterState',
+  value: 'Show All',
+});
 
-export default toDoListState;
+export { toDoListState, toDoListFilterState };
