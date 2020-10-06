@@ -3,25 +3,44 @@ import { useSetRecoilState } from 'recoil';
 import { toDoListState } from './recoilState';
 
 const ToDoCreator = () => {
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState({
+    price: '',
+    size: '',
+    description: '',
+  });
   const setToDoList = useSetRecoilState(toDoListState);
   const inputElement = useRef(null);
+
+  const handleInput = ({ target }) => {
+    const { value, name } = target;
+    setInput({ ...input, [name]: value });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setToDoList((old) => [...old, input]);
+    setInput({
+      price: '',
+      size: '',
+      description: '',
+    });
+  };
 
   useEffect(() => {
     inputElement.current.focus();
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!input) return;
-    setToDoList((oldList) => {
-      return [...oldList, { description: input, done: false, id: `task-${oldList.length}` }];
-    });
-    setInput('');
-  };
+  const { price, size, description } = input;
   return (
     <form onSubmit={handleSubmit}>
-      <input ref={inputElement} value={input} onChange={(e) => setInput(e.target.value)} />
+      <input
+        placeholder="description"
+        name="description"
+        ref={inputElement}
+        value={description}
+        onChange={handleInput}
+      />
+      <input placeholder="price" name="price" value={price} onChange={(e) => handleInput(e)} />
+      <input placeholder="size" name="size" value={size} onChange={handleInput} />
       <button type="submit">Add todo</button>
     </form>
   );

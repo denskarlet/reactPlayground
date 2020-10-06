@@ -11,10 +11,15 @@ const ToDoItem = ({ item }) => {
     });
     setToDoList(newList);
   };
-
+  const { description, size, price } = item;
   return (
     <li key={item.id}>
-      <span>{item.description}</span>
+      <div>
+        <span>Description: {description}</span>
+        <span>Size: {size}</span>
+        <span>Price: {price}</span>
+      </div>
+
       <input onChange={toggleComplete} checked={item.done} type="checkBox" />
     </li>
   );
