@@ -4,7 +4,6 @@ import filteredToDoListState from './recoilSelectors';
 import ToDoItem from './ToDoItem';
 
 const ToDoList = () => {
-  console.log('bitch');
   const toDoList = useRecoilValue(filteredToDoListState);
   const toRender = toDoList.map((elem, i) => <ToDoItem key={elem.id} item={elem} />);
   return <ul>{toRender}</ul>;
